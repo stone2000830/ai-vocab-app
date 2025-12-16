@@ -1,0 +1,17 @@
+# 忽略系统文件
+.DS_Store
+
+# 忽略依赖包 (这个巨大，绝对不能传)
+node_modules/
+
+# 忽略环境配置 (包含敏感 Key，绝对不能传)
+.env
+.env.*
+
+# 忽略构建产物
+dist/
+build/
+.next/
+
+# 忽略 Prisma 生成文件
+/backend/src/generated/

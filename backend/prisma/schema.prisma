@@ -1,0 +1,18 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "darwin-arm64"]
+  // 注意：我们删掉了 output 行，用回默认的 node_modules
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Word {
+  id          Int      @id @default(autoincrement())
+  text        String   @unique
+  definition  String
+  example     String?
+  createdAt   DateTime @default(now())
+}
