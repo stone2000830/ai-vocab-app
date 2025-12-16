@@ -1,7 +1,7 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // 👇 填入你的 Key
-const genAI = new GoogleGenerativeAI("AIzaSyClbvu9VtbIBir4tuCC3l0UgYj6PNeELVc");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function listModels() {
   try {
@@ -12,7 +12,7 @@ async function listModels() {
     // 修正：SDK 没有直接 listModels 的简单方法，我们用 fetch 直接调 API
     
     // 我们用最原始的 fetch 来查，绕过 SDK 的封装，看看到底怎么回事
-    const key = "AIzaSyClbvu9VtbIBir4tuCC3l0UgYj6PNeELVc"; // 👈 再填一次 Key
+    const key = process.env.GEMINI_API_KEY; // 👈 再填一次 Key
     const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${key}`;
     
     const response = await fetch(url);

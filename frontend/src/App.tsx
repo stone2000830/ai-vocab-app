@@ -28,7 +28,15 @@ function App() {
       console.error("获取失败:", error);
     }
   };
-
+const speak = (text: string) => {
+    if (!text) return;
+    // 停止之前正在读的内容（防止点击太快重音）
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US'; // 设置为美式英语
+    utterance.rate = 0.8;     // 语速稍慢一点，更清晰
+    window.speechSynthesis.speak(utterance);
+  };
   // 2. 添加单词
   const handleAdd = async () => {
     if (!input.trim()) return;
@@ -85,6 +93,15 @@ function App() {
             <div key={word.id} className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start mb-2">
                 <h3 className="text-xl font-bold text-gray-900">{word.text}</h3>
+                <button
+                  onClick={() => speak(word.text)}
+                  className="text-blue-500 hover:text-blue-700"
+                  title="朗读单词"
+                >
+                  🔊
+                </button>
+              </div>
+              <div className="flex justify-between items-center mb-2">
                 <span className="text-xs text-gray-400">
                   {new Date(word.createdAt).toLocaleDateString()}
                 </span>
