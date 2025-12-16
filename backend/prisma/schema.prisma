@@ -15,4 +15,6 @@ model Word {
   definition  String
   example     String?
   createdAt   DateTime @default(now())
+  ukPhonetic String?  // 英式音标
+  usPhonetic String?  // 美式音标
 }
