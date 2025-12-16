@@ -21,7 +21,7 @@ function App() {
 
   const fetchWords = async () => {
     try {
-      const res = await fetch('https://luoai.zeabur.app/wordg');
+      const res = await fetch('https://luoai.zeabur.app/word');
       const data = await res.json();
       setWords(data);
     } catch (error) {
