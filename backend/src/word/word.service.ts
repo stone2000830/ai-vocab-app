@@ -16,7 +16,7 @@ export class WordService {
 
     if (key) {
       this.genAI = new GoogleGenerativeAI(key);
-      this.model = this.genAI.getGenerativeModel({ model: "gemini-pro" });
+      this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash-001" });
     }
   }
 
