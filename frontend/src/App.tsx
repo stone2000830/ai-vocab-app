@@ -21,7 +21,7 @@ function App() {
 
   const fetchWords = async () => {
     try {
-      const res = await fetch('luoai.zeabur.app');
+      const res = await fetch('luoai.zeabur.app/word');
       const data = await res.json();
       setWords(data);
     } catch (error) {
@@ -36,7 +36,7 @@ function App() {
     setLoading(true);
     try {
       // 发送请求给后端
-      const res = await fetch('luoai.zeabur.app', {
+      const res = await fetch('luoai.zeabur.app/word', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: input }),
