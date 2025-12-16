@@ -23,8 +23,8 @@ function App() {
 
   const fetchWords = async () => {
     try {
-      const res = await fetch('http://localhost:3000/word');        //本地测试
-      //const res = await fetch('https://luoai.zeabur.app/word');   //线上测试
+      //const res = await fetch('http://localhost:3000/word');        
+      const res = await fetch('https://luoai.zeabur.app/word');   
       const data = await res.json();
       // 🛡️ 安全检查：只有当 data 真的是数组时，才更新；否则设为空数组
       if (Array.isArray(data)) {
@@ -52,8 +52,8 @@ function App() {
     setLoading(true);
     try {
       // 发送请求给后端
-      //const res = await fetch('https://luoai.zeabur.app/word', {  //线上测试
-      const res = await fetch('http://localhost:3000/word', {       //本地测试
+      const res = await fetch('https://luoai.zeabur.app/word', {  
+      //const res = await fetch('http://localhost:3000/word', {       
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: input }),
