@@ -16,7 +16,7 @@ export class WordService {
 
     if (key) {
       this.genAI = new GoogleGenerativeAI(key);
-      this.model = this.genAI.getGenerativeModel({ model: "gemini-2.5-flash-lite" });
+      this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     }
   }
 
@@ -79,6 +79,12 @@ export class WordService {
 
     } catch (error) {
       console.error('💥 处理失败:', error);
+
+      // 如果是 429 错误（限流），给前端返回一个友好的提示，而不是直接抛出异常让后端崩溃
+      if (error.status === 429 || error.message?.includes('429')) {
+         throw new HttpException('AI 太累了，请休息一分钟再试', HttpStatus.TOO_MANY_REQUESTS);
+      }
+      
       throw error;
     }
   }
