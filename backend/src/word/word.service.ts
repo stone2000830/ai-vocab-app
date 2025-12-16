@@ -16,7 +16,7 @@ export class WordService {
 
     if (key) {
       this.genAI = new GoogleGenerativeAI(key);
-      this.model = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      this.model = this.genAI.getGenerativeModel({ model: "gemini-pro" });
     }
   }
 
@@ -84,7 +84,7 @@ export class WordService {
       if (error.status === 429 || error.message?.includes('429')) {
          throw new HttpException('AI 太累了，请休息一分钟再试', HttpStatus.TOO_MANY_REQUESTS);
       }
-      
+
       throw error;
     }
   }
